@@ -1,0 +1,44 @@
+{% extends "home_layout.html" %} {% block content %}
+
+<h1>Movies You've Watched</h1>
+
+<table
+  style="
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  "
+>
+  <tr style="background-color: #444; color: white">
+    <th>Image</th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Summary</th>
+    <th>Actions</th>
+  </tr>
+  {% for movies in data %}
+  <tr style="text-align: center">
+    {% if movies.image %}
+    <td>
+      <img
+        src="{{ movies.image.url }}"
+        height="50px"
+        style="border-radius: 4px"
+      />
+    </td>
+    {% else %}
+    <td>No image</td>
+    {% endif %}
+    <td>{{ movies.title }}</td>
+    <td>{{ movies.year }}</td>
+    <td>{{ movies.summary }}</td>
+    <td>
+      <a href="{% url 'edit' movies.id %}" style="margin-right: 10px">Edit</a>
+      <a href="{% url 'delete' movies.id %}" style="color: red">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

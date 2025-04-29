@@ -1,0 +1,9 @@
+{% extends "home_layout.html" %} {% block content %}
+<h1>Add a Movie You Watched</h1>
+<form method="post" enctype="multipart/form-data" style="max-width: 500px">
+  {% csrf_token %} {{ form.as_p }} {{ censor_form.as_p }}
+  <button type="submit" style="padding: 0.5rem 1rem; margin-top: 1rem">
+    Create
+  </button>
+</form>
+{% endblock %}
